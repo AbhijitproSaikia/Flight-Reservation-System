@@ -27,6 +27,7 @@ public class Booking {
 	private String flight_duration;
 	private String plane_name;
 	private float price;
+	private int seat;
 	private Timestamp booked_at=new Timestamp(System.currentTimeMillis());
 	
 	public Booking() {
@@ -35,7 +36,7 @@ public class Booking {
 
 	public Booking(long booking_id, long uid, String flight_id, String passenger_name, int passenger_age,
 			String passenger_gender, String source, String departure_time, String destination, String arrival_time,
-			String flight_date, String flight_duration, String plane_name, float price, Timestamp booked_at) {
+			String flight_date, String flight_duration, String plane_name, float price, int seat, Timestamp booked_at) {
 		super();
 		this.booking_id = booking_id;
 		this.uid = uid;
@@ -51,6 +52,7 @@ public class Booking {
 		this.flight_duration = flight_duration;
 		this.plane_name = plane_name;
 		this.price = price;
+		this.seat = seat;
 		this.booked_at = booked_at;
 	}
 
@@ -166,6 +168,14 @@ public class Booking {
 		this.price = price;
 	}
 
+	public int getSeat() {
+		return seat;
+	}
+
+	public void setSeat(int seat) {
+		this.seat = seat;
+	}
+
 	public Timestamp getBooked_at() {
 		return booked_at;
 	}
@@ -174,5 +184,4 @@ public class Booking {
 		this.booked_at = booked_at;
 	}
 
-	
 }

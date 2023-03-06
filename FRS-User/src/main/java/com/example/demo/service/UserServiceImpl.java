@@ -11,7 +11,7 @@ import com.example.demo.entity.User;
 import com.example.demo.exception.IdNotFoundException;
 import com.example.demo.repository.UserRepository;
 
-@Service
+@Service 
 public class UserServiceImpl implements UserService {
 
 	@Autowired

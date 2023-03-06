@@ -46,6 +46,7 @@ public class BookingServiceImpl implements BookingService {
 		booking1.setFlight_duration(booking.getFlight_duration());
 		booking1.setPlane_name(booking.getPlane_name());
 		booking1.setPrice(booking.getPrice());
+		booking1.setSeat(booking.getSeat());
 		booking1.setBooked_at(booking.getBooked_at());
 		
 		return convertToDto(bookingRepository.save(booking1));
@@ -89,6 +90,7 @@ public class BookingServiceImpl implements BookingService {
 		bookingDto.setFlight_duration(booking.getFlight_duration());
 		bookingDto.setPlane_name(booking.getPlane_name());
 		bookingDto.setPrice(booking.getPrice());
+		bookingDto.setSeat(booking.getSeat());
 		bookingDto.setBooked_at(booking.getBooked_at());
 		
 		return bookingDto;
@@ -111,6 +113,7 @@ public class BookingServiceImpl implements BookingService {
 		booking.setFlight_duration(bookingDto.getFlight_duration());
 		booking.setPlane_name(bookingDto.getPlane_name());
 		booking.setPrice(bookingDto.getPrice());
+		booking.setSeat(bookingDto.getSeat());
 		booking.setBooked_at(bookingDto.getBooked_at());
 		
 		return booking;
