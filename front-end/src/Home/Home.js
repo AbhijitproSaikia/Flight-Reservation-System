@@ -1,18 +1,35 @@
 import React, { useState } from 'react';
 import './Home.css';
+import { useLocation } from 'react-router-dom';
+import Schedule from './Schedule'
+import './Schedule.css'
 
-const airports = [
-  { city: 'New York City', airport: 'JFK' },
-  { city: 'Los Angeles', airport: 'LAX' },
-  { city: 'Chicago', airport: 'ORD' },
-  { city: 'San Francisco', airport: 'SFO' },
-  { city: 'Dallas', airport: 'DFW' },
-];
 
-export default function Home() {
+export default function Home(props) {
+
+  const location = useLocation();
+  const userId = location.state?.userId;
+  console.log(userId)
+  
+  const airports = [
+    { city: 'New York City', airport: 'JFK' },
+    { city: 'Los Angeles', airport: 'LAX' },
+    { city: 'Chicago', airport: 'ORD' },
+    { city: 'San Francisco', airport: 'SFO' },
+    { city: 'Dallas', airport: 'DFW' },
+  ];
+  
+  const today = new Date().toString().split('T')[0];
+
   const [fromAirport, setFromAirport] = useState('');
   const [toAirport, setToAirport] = useState('');
+  const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
 
+
+  const [showSchedule, setShowSchedule] = useState(false);
+   
+  console.log(today)
+  
   const handleFromChange = (e) => {
     setFromAirport(e.target.value);
   };
@@ -21,36 +38,17 @@ export default function Home() {
     setToAirport(e.target.value);
   };
 
+  const handleDateChange = (e) => {
+    setDate(e.target.value);
+  };
+
   const handleSearch = () => {
-    console.log(`Search for flights from ${fromAirport} to ${toAirport}`);
+    console.log(`Search for flights from ${fromAirport} to ${toAirport} on ${date}`);
+    setShowSchedule(!showSchedule);
   };
 
   return (
     <div>
-      {/* Flight Reservation System */}
-      <div className="header">
-        <h1 className="title">Flight Reservation System</h1>
-      </div>
-
-      {/* Navigation bar */}
-      <nav className="navbar">
-        <ul className="navbar-nav">
-          <li className="nav-item">
-            <a href="#" className="nav-link">Home</a>
-          </li>
-          <li className="nav-item">
-            <a href="#" className="nav-link">My Bookings</a>
-          </li>
-          <li className="nav-item">
-            <a href="#" className="nav-link">My Profile</a>
-          </li>
-          <li className="nav-item">
-            <a href="#" className="nav-link">Logout</a>
-          </li>
-        </ul>
-      </nav>
-
-      {/* Main content */}
       <div className="container">
         <div className="box">
           <label htmlFor="from" className="label">From:</label>
@@ -75,9 +73,15 @@ export default function Home() {
           </select>
         </div>
         <div className="box">
+          <label htmlFor="date" className="label">Date:</label>
+          <input type="date" id="date" value={date} min={today} onChange={handleDateChange} className="date-input" />
+        </div>
+        <div className="box">
           <button onClick={handleSearch} className="search-button">Search</button>
+          {showSchedule}
         </div>
       </div>
-    </div>
+      <div>{showSchedule && <div><Schedule userId={userId} fromAirport={fromAirport} toAirport={toAirport} date={date}/></div>}</div>
+      </div>
   );
 }

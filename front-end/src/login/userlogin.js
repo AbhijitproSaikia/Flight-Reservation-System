@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Form, Button } from 'semantic-ui-react';
+// import { Form, Button } from 'semantic-ui-react';
 // import { useNavigation } from '@react-navigation/native';
+
 import axios from 'axios';
 import './userlogin.css';
 // import Home from'C:\Users\asaik\Desktop\Axis Fintech Training\react\FRS-Test\frs_test\src\Home\Home.js';
@@ -31,26 +32,27 @@ export default function Userlogin(){
 
 
   return(
-      
-      <div >
-          <Form>
-        <Form.Field>
+    <body>
+      <div>
+      <form onSubmit={sendDataToAPI} style={{ backgroundImage: 'url(loginbackground.jpg)',width: '80%', maxWidth: '400px', margin: '0 auto', paddingLeft: '20px' }}>
+        <div>
         <h2>Login</h2>
           <label>Name</label>
           <input name="username" 
           onChange={(e) => setuname(e.target.value)} 
           placeholder='Name' />
-        </Form.Field>
-        <Form.Field>
+        </div>
+        <div>
           <label>Password</label>
           <input name="userpassword" 
           placeholder='Password' 
           onChange={(e) => setupassword(e.target.value)} 
           />
-        </Form.Field>
-        <Button type='submit' onClick={sendDataToAPI}>Submit</Button>
-      </Form>
-
+        </div>
+        <button type='submit' onClick={sendDataToAPI}>Submit</button>
+      </form>
       </div>
+      </body>
+     
   );
 }

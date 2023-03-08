@@ -1,22 +1,27 @@
 import './App.css';
-// import Registration from './components/registration/registration';
-import Userlogin from './login/userlogin';
+import React from 'react';
+import { useState } from 'react';
+import Registration from './registration';
+import Userlogin from './userlogin';
 import Home from './Home/Home';
-// import Booking from './booking/booking';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes, RouteElement,Navigate } from 'react-router-dom';
+import Userdashboard from './Userdashboard';
 
 
 
 function App() {
+
+
+
   return (
     <Router>
-      <div >
-        <div className='main'>
-          
-        </div>
-          <Route exact path='/' component={Userlogin} /> 
-          <Route exact path='/Home/Home' component={Home} /> 
-      </div>
+        <Routes>
+
+          <Route path="/login" element={<Userlogin/>} />
+          <Route path="/reg" element={<Registration/>} />
+          <Route path="/Home" element={<Home/>} />
+        
+        </Routes>
     </Router>
   );
 }
