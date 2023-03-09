@@ -52,7 +52,7 @@ export default function Booking(props){
 
   console.log("uid= "+booking.uid)
 
-  const handleInputChange = (event) => {
+  const handleInputChange = (event) => {  
     const { name, value } = event.target;
     setBooking({ ...booking, [name]: value });
   };
@@ -63,11 +63,11 @@ export default function Booking(props){
       .then(response => {
         console.log(response);
         alert("Flight Booked")
-        // do something with the response, e.g. show a success message
+        
       })
       .catch(error => {
         console.log(error);
-        // do something with the error, e.g. show an error message
+        alert("Error")
       });
   };
 

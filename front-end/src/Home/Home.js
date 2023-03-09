@@ -3,13 +3,15 @@ import './Home.css';
 import { useLocation } from 'react-router-dom';
 import Schedule from './Schedule'
 import './Schedule.css'
+import MyBookings from './MyBookings';
+import MyProfile from './MyProfile';
 
 
-export default function Home(props) {
+export default function Home() {
 
   const location = useLocation();
   const userId = location.state?.userId;
-  console.log(userId)
+  console.log("id is "+userId)
   
   const airports = [
     { city: 'New York City', airport: 'JFK' },
@@ -25,9 +27,10 @@ export default function Home(props) {
   const [toAirport, setToAirport] = useState('');
   const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
 
-
   const [showSchedule, setShowSchedule] = useState(false);
-   
+  const [showBookings, setShowBookings] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
+ 
   console.log(today)
   
   const handleFromChange = (e) => {
@@ -47,8 +50,22 @@ export default function Home(props) {
     setShowSchedule(!showSchedule);
   };
 
+  const handlMyBookings = () => {
+    setShowBookings(!showBookings);
+  };
+
+  const handlMyProfile = () => {
+    setShowProfile(!showProfile);
+  };
+
+
   return (
     <div>
+      <div style={{display: "flex"}}>
+       <button onClick={handlMyBookings} className="button1" >My Bookings</button>{showBookings}
+       <button onClick={handlMyProfile} className="button2">My Profile</button>{showProfile}
+       <button className="button3">Logout</button>
+     </div>
       <div className="container">
         <div className="box">
           <label htmlFor="from" className="label">From:</label>
@@ -81,7 +98,17 @@ export default function Home(props) {
           {showSchedule}
         </div>
       </div>
-      <div>{showSchedule && <div><Schedule userId={userId} fromAirport={fromAirport} toAirport={toAirport} date={date}/></div>}</div>
+      <div>{showSchedule && <div><Schedule userId={userId} fromAirport={fromAirport} toAirport={toAirport} date={date}/>
+      </div>}
+      </div>
+      <div>
+      {showBookings && <div><MyBookings userId={userId}/>
+      </div>}
+      </div>
+      <div>
+      {showProfile && <div><MyProfile userId={userId}/>
+      </div>}
+      </div>
       </div>
   );
 }

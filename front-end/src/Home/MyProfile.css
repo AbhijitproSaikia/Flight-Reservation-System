@@ -1,0 +1,45 @@
+table {
+    border-collapse: collapse;
+    width: 50%;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .profile-header {
+    background-color: #ddd;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .profile-header h2 {
+    margin-top: 0;
+    margin-bottom: 8px;
+  }
+  
+  .profile-table {
+    margin-bottom: 16px;
+  }
+  
+  .profile-table p {
+    margin: 0;
+  }
+  
+  .profile-table strong {
+    font-weight: bold;
+  }
+  

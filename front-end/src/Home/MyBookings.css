@@ -1,0 +1,35 @@
+table {
+    border-collapse: collapse;
+    width: 70%;
+    border: 1px solid black;
+    margin: auto;
+  }
+  th, td {
+    border: 1px solid #130202;
+    background-color: #ecd3d3;
+    padding: 8px;
+    text-align: left;
+  }
+  th {
+    font-weight: bold;
+    background-color: #e61212;
+  }
+
+h2 {
+    font-weight: bold;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    margin-bottom: 20px;
+  }
+  li h3 {
+    font-weight: bold;
+  }
+  li p {
+    font-weight: bold;
+    margin: 0;
+  }

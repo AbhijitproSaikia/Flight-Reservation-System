@@ -1,17 +1,25 @@
+
 body {
-  background-color:#007bff;
+
+  height: 100vh;
+  /* background-image: url("img/loginbackground.jpg"); */
+  background-color: #4ce5f0;
   background-repeat: no-repeat;
   background-size: cover;
 
 }
 
 form {
-  background-color: rgba(201, 214, 24, 0.1);
+  background-color: rgba(248, 248, 240, 0.1);
   border-radius: 10px;
   padding: 20px;
   margin: 50px auto;
   max-width: 400px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 h2 {
@@ -29,7 +37,7 @@ input {
   width: 100%;
   padding: 10px;
   border-radius: 5px;
-  border: none;
+  border: 0cqb;
   margin-bottom: 20px;
   box-sizing: border-box;
 }
@@ -40,20 +48,12 @@ button {
   padding: 10px;
   border-radius: 5px;
   border: none;
-  background-color: #007bff;
-  color: #fff;
+  background-color: #4ce5f0;
+  color: #0c010b;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background-color: #690de2;
-}
-
-/* Center the form horizontally and vertically */
-form {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  background-color: #1654b1;
 }

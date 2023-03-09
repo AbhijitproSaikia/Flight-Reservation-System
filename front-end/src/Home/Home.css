@@ -72,3 +72,43 @@
   .nav-link:hover {
     background-color: #555;
   }
+
+ button.button1 {
+  display: inline-block;
+  margin-right: 10px;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button.button2 {
+  display: inline-block;
+  margin-right: 10px;
+  background-color: #03025e;
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button.button3 {
+  display: inline-block;
+  margin-right: 10px;
+  background-color: #a8250e;
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+  

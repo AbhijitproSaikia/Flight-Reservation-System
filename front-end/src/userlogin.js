@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
-import './userlogin.css';
+// import './Userlogin.css';
 
 export default function Userlogin(){
+  
 
     const [uname,setuname]=useState('');
     const [upassword,setupassword]=useState('');
 
     const navigate = useNavigate();
-
-    // const [response, setResponse] = useState(null);/
 
     const sendDataToAPI = async(event) => {
       event.preventDefault();
@@ -25,14 +24,14 @@ export default function Userlogin(){
         }
       } catch (error) {
         console.error(error);
-        alert('An error occurred while trying to login.');
+        alert('Error.');
       }
     }
 
   return(
-    <body>
-      <div>
-      <form style={{ backgroundImage: 'url(loginbackground.jpg)',width: '80%', maxWidth: '400px', margin: '0 auto', paddingLeft: '20px' }}>
+    <body >
+      <div >
+      <form className='login' style={{ width: '80%', maxWidth: '400px', margin: '0 auto', paddingLeft: '20px' }}>
         <div>
         <h2>Login</h2>
           <label>Name</label>

@@ -1,28 +1,33 @@
 import './App.css';
-import React from 'react';
-import { useState } from 'react';
-import Registration from './registration';
-import Userlogin from './userlogin';
+import React, { useState } from 'react';
+import Registration from './Registration';
+import Userlogin from './Userlogin';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './Home/Home';
+import MyBookings from './Home/MyBookings';
 import { BrowserRouter as Router, Route, Routes, RouteElement,Navigate } from 'react-router-dom';
 import Userdashboard from './Userdashboard';
-
+// import './Userlogin.css'
+// import image from "./img/loginbackground.jpg"; 
 
 
 function App() {
 
-
+  const [userId, setUserId] = useState(null);
 
   return (
+    
     <Router>
         <Routes>
-
+          <Route path="/Home" element={<Home/>} />
           <Route path="/login" element={<Userlogin/>} />
           <Route path="/reg" element={<Registration/>} />
-          <Route path="/Home" element={<Home/>} />
-        
+          <Route path="/MyBookings" element={<MyBookings/>} />
+
         </Routes>
+        
     </Router>
+   
   );
 }
 

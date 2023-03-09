@@ -23,6 +23,7 @@ export default function Registration(){
       
       <div >
           <form>
+          <h2>Register</h2>
         <Form.Field>
           <label>Name</label>
           <input name="username" 
