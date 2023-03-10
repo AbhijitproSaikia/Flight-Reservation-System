@@ -33,6 +33,13 @@ public class UserController {
         return new ResponseEntity<List<UserDto>>(userDtos, HttpStatus.OK);
     }
     
+    
+    @GetMapping("/user/{uid}")
+    public ResponseEntity<UserDto> findByUid(@PathVariable Long uid)  {
+        UserDto userDto = userService.findByUid(uid);
+        return new ResponseEntity<UserDto>(userDto, HttpStatus.OK);
+    }
+    
     @GetMapping("/validate/{uname}/{upassword}")
 	public ResponseEntity<Long> validate(@PathVariable String uname,@PathVariable String upassword){
 		   Long id =(long) 0;

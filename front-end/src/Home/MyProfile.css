@@ -42,4 +42,27 @@ table {
   .profile-table strong {
     font-weight: bold;
   }
-  
+  button.update {
+    display: inline-block;
+    margin-right: 10px;
+    background-color: #2167e7;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  button.delete {
+    display: inline-block;
+    margin-right: 10px;
+    background-color: #ce1e07;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
