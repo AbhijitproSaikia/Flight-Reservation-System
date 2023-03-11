@@ -1,0 +1,34 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  th,
+  td {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #0f0303;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #b8adad;
+  }
+  
+  tr:hover {
+    background-color: #ddd;
+  }
+  
+  @media only screen and (max-width: 600px) {
+    th,
+    td {
+      font-size: 14px;
+    }
+  }
+  

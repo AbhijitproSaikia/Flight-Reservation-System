@@ -11,6 +11,7 @@ export default function UserProfile(props) {
   const [updateStatus, setUpdateStatus] = useState(null);
   const [user, setUser] = useState(null);
   const [deleteStatus, setDeleteStatus] = useState(null);
+
   const userId = props.userId;
   const navigate = useNavigate();
 
@@ -34,7 +35,7 @@ export default function UserProfile(props) {
         upassword: password
       })
       .then((response) => {
-        setUpdateStatus(response.data.message); // convert object to string
+        setUpdateStatus(response.data.message);
         alert("Profile Updated");
       })
       .catch((error) => console.error(error));
@@ -44,7 +45,7 @@ export default function UserProfile(props) {
     axios
       .delete(`http://localhost:9991/api/v6/user/delete/${userId}`)
       .then((response) => {
-        setDeleteStatus(response.data.message); // convert object to string
+        setDeleteStatus(response.data.message);
         alert("Profile Deleted");
         navigate('/login');
       })
@@ -90,10 +91,6 @@ export default function UserProfile(props) {
           </tbody>
         </table>
       )}
-      {/* <button className='update' onClick={handleUpdateUser}>Update User</button>
-      {updateStatus && <p>{updateStatus}</p>}
-      <button className='delete' onClick={handleDeleteUser}>Delete User</button>
-      {deleteStatus && <p>{deleteStatus}</p>} */}
     </div>
   );
 }

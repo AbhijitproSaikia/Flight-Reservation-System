@@ -50,3 +50,16 @@
   .schedule li li {
     margin-bottom: 5px;
   }
+
+  button.cancel {
+    display: inline-block;
+    margin-right: 10px;
+    background-color: #e73821;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
