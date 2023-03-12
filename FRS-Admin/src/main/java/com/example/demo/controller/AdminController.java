@@ -32,11 +32,11 @@ public class AdminController {
     }
 	
 	@GetMapping("/adminvalidate/{aname}/{apassword}")
-	public ResponseEntity<Long> validation(@PathVariable String aname,@PathVariable String apassword,@RequestBody Admin admin){
+	public ResponseEntity<Long> validation(@PathVariable String aname,@PathVariable String apassword){
 		   Long id =(long) 0;
 		   try {
 			   Admin adminData = adminService.findByAnameAndApassword(aname, apassword);
-			   if(adminData.getAname().equals(admin.getAname()) && adminData.getApassword().equals(admin.getApassword())) {
+			   if(adminData.getAname().equals(aname) && adminData.getApassword().equals(apassword)) {
 					 id = adminData.getAid();
 				   }
 		   }catch(Exception ex) {

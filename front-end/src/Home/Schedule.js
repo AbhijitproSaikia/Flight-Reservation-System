@@ -1,6 +1,7 @@
 import './Schedule.css'
 import Booking from './Booking'
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 export default function Schedule(props){
 
@@ -14,12 +15,27 @@ export default function Schedule(props){
   console.log(toAirport)
   console.log(date)
 
-  const schedule=[
-    {departure_time:'11:00 AM',arrival_time:'1:00 PM',flight_duration:'2 Hrs',flight_id:'AIR INDIA 11',plane_name:'A320',price:6000.00},
-    {departure_time:'10:00 AM',arrival_time:'3:00 PM',flight_duration:'5 Hrs',flight_id:'INDIGO 11',plane_name:'B747',price:4000.00}
-  ]
+  // const schedule=[
+  //   {departure_time:'11:00 AM',arrival_time:'1:00 PM',flight_duration:'2 Hrs',flight_id:'AIR INDIA 11',plane_name:'A320',price:6000.00},
+  //   {departure_time:'10:00 AM',arrival_time:'3:00 PM',flight_duration:'5 Hrs',flight_id:'INDIGO 11',plane_name:'B747',price:4000.00}
+  // ]
+
+  useEffect(() => {
+    const fetchSchedule = async () => {
+      try {
+        const response = await axios.get('http://localhost:8890/api/v6/schedules');
+        setSchedule(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    fetchSchedule();
+  }, []);
 
 
+
+  const [schedule, setSchedule] = useState([]);
   const [selectedFlight, setSelectedFlight] = useState(null);
   const [passengerDetails, setPassengerDetails] = useState(false);
 
@@ -32,16 +48,16 @@ export default function Schedule(props){
   return ( 
   <div className="schedule">
         {schedule.map((flight) => (
-          <li key={flight.flight_id}>
-            <strong>{flight.flight_id}</strong>
+          <li className='liv' key={flight.flight_id}>
+            <strong className='pn'>{flight.flight_id}</strong>
             <ul>
-              <li>Departure Time: {flight.departure_time} - | | - Arrival Time: {flight.arrival_time}</li>
-              <li>Flight Duration: {flight.flight_duration} Plane Name: {flight.plane_name}</li>
-              <li>Price: {flight.price}</li>
+              <li>Departure Time: {flight.departure_time} | | Arrival Time: {flight.arrival_time}</li>
+              <li className='fd'>Flight Duration: {flight.flight_duration} | | Plane Name: {flight.plane_name}</li>
+              <li className='price'>Price: {flight.price}</li>
               <h2>Price: {flight.price}</h2>
               
             </ul>
-            <button onClick={() => handleBook(flight)}>Book</button>
+            <button className='bookbutton' onClick={() => handleBook(flight)}>Book</button>
             {passengerDetails}
           </li>
         ))}
@@ -61,6 +77,7 @@ export default function Schedule(props){
         </div>}
         </div>
       </div>
+
       
   )
 }

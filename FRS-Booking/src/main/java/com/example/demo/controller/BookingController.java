@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,5 +50,10 @@ public class BookingController {
         BookingDto updatedBookingDto = bookingService.updateBooking(booking_id, booking);
         return new ResponseEntity<BookingDto>(updatedBookingDto, HttpStatus.OK);
     }
+	
+	@DeleteMapping("/booking/delete/{booking_id}")
+    public ResponseEntity<String> deleteUsers(@PathVariable Long booking_id) {
+		 return new ResponseEntity<String>(bookingService.deleteBooking(booking_id),HttpStatus.OK);
+	 }
 }
 

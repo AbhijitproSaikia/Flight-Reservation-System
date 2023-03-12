@@ -1,4 +1,5 @@
 import { useState,useEffect } from 'react';
+import axios from 'axios';
 import './Home.css';
 import { useLocation,useNavigate } from 'react-router-dom';
 import Schedule from './Schedule'
@@ -27,16 +28,22 @@ export default function Home() {
     navigate('/login');
   };
 
+  const [airports, setAirports] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:8889/api/v6/airports')
+      .then(response => setAirports(response.data))
+      .catch(error => console.error(error));
+  }, []);
 
 
-
-  const airports = [
-    { city: 'New York City', airport: 'JFK' },
-    { city: 'Los Angeles', airport: 'LAX' },
-    { city: 'Chicago', airport: 'ORD' },
-    { city: 'San Francisco', airport: 'SFO' },
-    { city: 'Dallas', airport: 'DFW' },
-  ];
+  // const airports = [
+  //   { city: 'New York City', airport: 'JFK' },
+  //   { city: 'Los Angeles', airport: 'LAX' },
+  //   { city: 'Chicago', airport: 'ORD' },
+  //   { city: 'San Francisco', airport: 'SFO' },
+  //   { city: 'Dallas', airport: 'DFW' },
+  // ];
   
   const today = new Date().toString().split('T')[0];
 
@@ -90,8 +97,8 @@ export default function Home() {
           <select id="from" value={fromAirport} onChange={handleFromChange} className="select">
             <option value="">Select an airport</option>
             {airports.map((airport, index) => (
-              <option key={index} value={airport.airport}>
-                {airport.city} ({airport.airport})
+              <option key={index} value={airport.airport_name}>
+                {airport.airport_name}
               </option>
             ))}
           </select>
@@ -101,8 +108,8 @@ export default function Home() {
           <select id="to" value={toAirport} onChange={handleToChange} className="select">
             <option value="">Select an airport</option>
             {airports.map((airport, index) => (
-              <option key={index} value={airport.airport}>
-                {airport.city} ({airport.airport})
+              <option key={index} value={airport.airport_name}>
+                {airport.airport_name}
               </option>
             ))}
           </select>

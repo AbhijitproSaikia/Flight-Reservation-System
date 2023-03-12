@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.axis.exception.IdNotFoundException;
 import com.example.demo.dto.BookingDto;
 import com.example.demo.entity.Booking;
 import com.example.demo.repository.BookingRepository;
@@ -27,6 +28,16 @@ public class BookingServiceImpl implements BookingService {
 		return bookings;
 	}
 
+//	@Override
+//	public BookingDto findbyBooking_id(Long booking_id) {
+//		Booking optBooking = bookingRepository.findById(booking_id).orElseThrow();
+//	    if(optBooking!=null)
+//	    	return convertToDto(optBooking);
+//	    else   
+//	        throw new IdNotFoundException("Booking_ID not found");
+//	}
+	
+	
 	
 	@Override
 	public BookingDto updateBooking(long booking_id, Booking booking) {
@@ -118,4 +129,6 @@ public class BookingServiceImpl implements BookingService {
 		
 		return booking;
 	}
+
+	
 }

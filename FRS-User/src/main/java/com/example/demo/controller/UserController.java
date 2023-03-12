@@ -43,16 +43,14 @@ public class UserController {
     @GetMapping("/validate/{uname}/{upassword}")
 	public ResponseEntity<Long> validate(@PathVariable String uname,@PathVariable String upassword){
 		   Long id =(long) 0;
-//    	 	String s="invalid";
 		   try {
 			   User userData = userService.findByUnameAndUpassword(uname, upassword);
 			   if(userData.getUname().equals(uname) && userData.getUpassword().equals(upassword)) {
 					 id = userData.getUid();
-//				   s="valid";
+
 				   }
 		   }catch(Exception ex) {
 			   	id = (long) 0;
-//			   s="invalid";
 		   } 	   
 		   
 		return new ResponseEntity<Long>(id,HttpStatus.OK); 		   
