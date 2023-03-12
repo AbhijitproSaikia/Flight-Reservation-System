@@ -4,12 +4,66 @@ import './AllBookings.css'
 
 export default function AllBookings() {
   const [bookings, setBookings] = useState([]);
+  const [updateStatus, setUpdateStatus] = useState(null);
 
   useEffect(() => {
     axios.get('http://localhost:8888/api/v6/allbookings')
-      .then(response => setBookings(response.data))
+      .then(response =>{
+         setBookings(response.data)
+        })
       .catch(error => console.log(error));
   }, []);
+
+
+
+  const handleUpdateBooking = (id,usid, name, age, gender,fid,s,d,dt,at,fd,fdu,pn,pr,st) => {
+    axios
+      .put(`http://localhost:8888/api/v6/updatebooking/${id}`, {
+        uid: usid,
+        passenger_name:name,
+        passenger_age:age,
+        passenger_gender:gender,
+        flight_id:fid,
+        source:s,
+        destination:d,
+        departure_time:dt,
+        arrival_time:at,
+        flight_date:fd,
+        flight_duration: fdu,
+        plane_name:pn,
+        price:pr,
+        seat:st
+      })
+      .then((response) => {
+        setUpdateStatus(response.data.message);
+        alert("Booking Updated");
+      })
+      .catch((error) => console.error(error));
+  };
+
+
+  const handleUpdateChange = (id, field, value) => {
+    setBookings(bookings.map((booking) => {
+      if (booking.booking_id === id) {
+        return { ...booking, [field]: value }
+      }
+      return booking;
+    }))
+  }
+
+
+
+
+  const handleDeleteBooking = (id) => {
+    axios
+      .delete(`http://localhost:8888/api/v6/booking/delete/${id}`)
+      .then((response) => {
+        setBookings(bookings.filter((booking) => booking.booking_id !== id));
+        alert("Profile Deleted");
+      })
+      .catch((error) => console.error(error));
+  };
+
 
   return (
     <table>
@@ -30,6 +84,7 @@ export default function AllBookings() {
           <th>Plane Name</th>
           <th>Price</th>
           <th>Seat</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -38,9 +93,9 @@ export default function AllBookings() {
             <td>{booking.booking_id}</td>
             <td>{booking.uid}</td>
             <td>{booking.flight_id}</td>
-            <td>{booking.passenger_name}</td>
-            <td>{booking.passenger_age}</td>
-            <td>{booking.passenger_gender}</td>
+            <td><input type="text" value={booking.passenger_name} onChange={(e) => handleUpdateChange(booking.booking_id, 'passenger_name', e.target.value)} /></td>
+            <td><input type="number" value={booking.passenger_age} onChange={(e) => handleUpdateChange(booking.booking_id, 'passenger_age', e.target.value)} /></td>
+            <td><input type="text" value={booking.passenger_gender} onChange={(e) => handleUpdateChange(booking.booking_id, 'passenger_gender', e.target.value)} /></td>
             <td>{booking.source}</td>
             <td>{booking.departure_time}</td>
             <td>{booking.destination}</td>
@@ -50,6 +105,28 @@ export default function AllBookings() {
             <td>{booking.plane_name}</td>
             <td>{booking.price}</td>
             <td>{booking.seat}</td>
+            <td>
+              <button className='update' onClick={() => handleUpdateBooking(
+                booking.booking_id,
+                booking.uid,
+                booking.passenger_name,
+                booking.passenger_age,
+                booking.passenger_gender,
+                booking.flight_id,
+                booking.source,
+                booking.destination,
+                booking.departure_time,
+                booking.arrival_time,
+                booking.flight_date,
+                booking.flight_duration,
+                booking.plane_name,
+                booking.price,
+                booking.seat
+              )}>Update</button>
+              {updateStatus && <p>{updateStatus}</p>}
+
+              <button className='delete' onClick={() => handleDeleteBooking(booking.booking_id)}>Delete</button>
+            </td>
           </tr>
         ))}
       </tbody>

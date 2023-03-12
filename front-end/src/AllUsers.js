@@ -3,7 +3,7 @@ import axios from 'axios';
 import './AllUsers.css'
 
 
-function UsersTable() {
+export default function AllUsers() {
   const [users, setUsers] = useState([]);
   const [updateStatus, setUpdateStatus] = useState(null);
 
@@ -79,5 +79,19 @@ function UsersTable() {
   );
 }
 
-export default UsersTable;
 
+
+// uid: usid,
+//         passenger_name:name,
+//         passenger_age:age,
+//         passenger_gender:gender,
+//         flight_id:fid,
+//         source:s,
+//         destination:d,
+//         departure_time:dt,
+//         arrival_time:at,
+//         flight_date:fd,
+//         flight_duration: fdu,
+//         plane_name:pn,
+//         price:pr,
+//         seat:st

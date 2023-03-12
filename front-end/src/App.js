@@ -1,12 +1,11 @@
 import './App.css';
-import React, { useState } from 'react';
 import Registration from './Registration';
 import Userlogin from './Userlogin';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './Home/Home';
 import MyBookings from './Home/MyBookings';
-import { BrowserRouter as Router, Route, Routes, RouteElement,Navigate } from 'react-router-dom';
-import Userdashboard from './Userdashboard';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
 import AdminLogin from './AdminLogin'
 import AdminHome from './AdminHome'
 import AllUsers from './AllUsers';
@@ -15,8 +14,6 @@ import AllUsers from './AllUsers';
 
 
 function App() {
-
-  const [userId, setUserId] = useState(null);
 
   return (
     

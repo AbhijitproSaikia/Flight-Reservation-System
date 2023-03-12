@@ -25,7 +25,7 @@ export default function UserProfile(props) {
         setPassword(response.data.upassword);
       })
       .catch((error) => console.error(error));
-  }, [props.userId]);
+  }, );
 
   const handleUpdateUser = () => {
     axios

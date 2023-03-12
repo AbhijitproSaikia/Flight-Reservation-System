@@ -30,9 +30,6 @@ export default function Booking(props){
   console.log(pprice)
 
 
-
-
-
   const [booking, setBooking] = useState({
     uid:userId,
     flight_id: fid,

@@ -15,10 +15,10 @@ export default function Adminlogin(){
       event.preventDefault();
       try{
         const response= await axios.get(`http://localhost:8887/api/v6/adminvalidate/${aname}/${apassword}`)
-        const userId=response.data.valueOf()
-        if (userId) {
-          console.log(userId)
-          navigate('/AdminHome',{ state: { userId:userId } });
+        const adminId=response.data.valueOf()
+        if (adminId) {
+          console.log(adminId)
+          navigate('/AdminHome',{ state: { adminId:adminId } });
         } else {
           alert('Invalid credentials');
         }

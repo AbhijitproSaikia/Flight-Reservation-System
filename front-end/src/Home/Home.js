@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState,useEffect } from 'react';
 import './Home.css';
-import { useLocation } from 'react-router-dom';
+import { useLocation,useNavigate } from 'react-router-dom';
 import Schedule from './Schedule'
 import './Schedule.css'
 import MyBookings from './MyBookings';
@@ -9,10 +9,27 @@ import MyProfile from './MyProfile';
 
 export default function Home() {
 
+  const navigate = useNavigate();
   const location = useLocation();
-  const userId = location.state?.userId;
+
+  let userId = location.state?.userId;
   console.log("id is "+userId)
   
+  useEffect(() => {
+    if (!userId || userId === 0) {
+      navigate('/login');
+    }
+  }, [userId, navigate]);
+  
+  const handleLogout = () => {
+    userId=0
+    localStorage.clear(); 
+    navigate('/login');
+  };
+
+
+
+
   const airports = [
     { city: 'New York City', airport: 'JFK' },
     { city: 'Los Angeles', airport: 'LAX' },
@@ -61,10 +78,11 @@ export default function Home() {
 
   return (
     <div>
+      {/* {(!userId || userId === 0) && navigate('/login')} */}
       <div style={{display: "flex"}}>
        <button onClick={handlMyBookings} className="button1" >My Bookings</button>{showBookings}
        <button onClick={handlMyProfile} className="button2">My Profile</button>{showProfile}
-       <button className="button3">Logout</button>
+       <button className="button3" onClick={handleLogout}>Logout</button>
      </div>
       <div className="container">
         <div className="box">
