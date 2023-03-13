@@ -23,9 +23,10 @@ export default function UserProfile(props) {
         setName(response.data.uname);
         setEmail(response.data.uemail);
         setPassword(response.data.upassword);
+        console.log(response.data.uname, response.data.uemail, response.data.upassword);
       })
       .catch((error) => console.error(error));
-  }, );
+  },[userId] );
 
   const handleUpdateUser = () => {
     axios

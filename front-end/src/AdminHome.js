@@ -3,8 +3,7 @@ import './AdminHome.css';
 import { useLocation,useNavigate } from 'react-router-dom';
 import AllBookings from './AllBookings';
 import AllUsers from './AllUsers';
-// import MyBookings from './MyBookings';
-// import MyProfile from './MyProfile';
+
 
 
 export default function Home() {

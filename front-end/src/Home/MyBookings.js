@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useCallback } from 'react';
 import axios from 'axios';
 import './MyBookings.css'
 
@@ -9,18 +9,20 @@ export default function MyBookings(props) {
      
   const userId = props.userId;
 
-  useEffect(() => {
-    fetchBookings();
-  }, );
-
-  const fetchBookings = async () => {
+  const fetchBookings = useCallback(async () => {
     try {
       const response = await axios.get(`http://localhost:8888/api/v6/mybookings/${userId}`);
       setBookings(response.data);
     } catch (error) {
       console.error(error);
     }
-  };
+  }, [userId])
+
+  useEffect(() => {
+    fetchBookings();
+  },[fetchBookings] );
+
+  
 
   const handleUpdateBooking = (id,usid, name, age, gender,fid,s,d,dt,at,fd,fdu,pn,pr,st) => {
     axios

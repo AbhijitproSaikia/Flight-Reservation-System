@@ -19,9 +19,9 @@ function App() {
     
     <Router>
         <Routes>
-        <Route path="/Adminlogin" element={<AdminLogin/>} />
-        <Route path="/AllUsers" element={<AllUsers/>} />
-        <Route path="/AdminHome" element={<AdminHome/>} />
+          <Route path="/Adminlogin" element={<AdminLogin/>} />
+          <Route path="/AllUsers" element={<AllUsers/>} />
+          <Route path="/AdminHome" element={<AdminHome/>} />
           <Route path="/Home" element={<Home/>} />
           <Route path="/login" element={<Userlogin/>} />
           <Route path="/reg" element={<Registration/>} />

@@ -59,7 +59,7 @@ export default function AllBookings() {
       .delete(`http://localhost:8888/api/v6/booking/delete/${id}`)
       .then((response) => {
         setBookings(bookings.filter((booking) => booking.booking_id !== id));
-        alert("Profile Deleted");
+        alert("Booking Deleted");
       })
       .catch((error) => console.error(error));
   };

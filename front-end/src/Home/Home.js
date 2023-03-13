@@ -1,34 +1,35 @@
-import { useState,useEffect } from 'react';
-import axios from 'axios';
-import './Home.css';
-import { useLocation,useNavigate } from 'react-router-dom';
+import { useState,useEffect } from 'react'
+import axios from 'axios'
+import './Home.css'
+import { useLocation,useNavigate } from 'react-router-dom'
 import Schedule from './Schedule'
 import './Schedule.css'
-import MyBookings from './MyBookings';
-import MyProfile from './MyProfile';
+import MyBookings from './MyBookings'
+import MyProfile from './MyProfile'
 
 
 export default function Home() {
 
-  const navigate = useNavigate();
-  const location = useLocation();
+  const navigate = useNavigate()
+  const location = useLocation()
 
-  let userId = location.state?.userId;
+  let userId = location.state?.userId
   console.log("id is "+userId)
   
   useEffect(() => {
     if (!userId || userId === 0) {
-      navigate('/login');
+      navigate('/login')
     }
-  }, [userId, navigate]);
+  }, [userId, navigate])
   
   const handleLogout = () => {
     userId=0
-    localStorage.clear(); 
-    navigate('/login');
-  };
+    localStorage.clear() 
+    navigate('/login')
+  }
 
-  const [airports, setAirports] = useState([]);
+  const [airports, setAirports] = useState([])
+  const [formValid, setFormValid] = useState(false)
 
   useEffect(() => {
     axios.get('http://localhost:8889/api/v6/airports')
@@ -45,11 +46,11 @@ export default function Home() {
   //   { city: 'Dallas', airport: 'DFW' },
   // ];
   
-  const today = new Date().toString().split('T')[0];
+  const today = new Date().toISOString().split('T')[0]
 
-  const [fromAirport, setFromAirport] = useState('');
-  const [toAirport, setToAirport] = useState('');
-  const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
+  const [fromAirport, setFromAirport] = useState('')
+  const [toAirport, setToAirport] = useState('')
+  const [date, setDate] = useState(new Date().toISOString().split('T')[0])
 
   const [showSchedule, setShowSchedule] = useState(false);
   const [showBookings, setShowBookings] = useState(false);
@@ -59,11 +60,16 @@ export default function Home() {
   
   const handleFromChange = (e) => {
     setFromAirport(e.target.value);
+    validateForm();
   };
 
-  const handleToChange = (e) => {
-    setToAirport(e.target.value);
-  };
+  const handleToChange = (event) => {
+    const selectedAirport = event.target.value;
+    if (selectedAirport !== fromAirport) {
+      setToAirport(selectedAirport);
+      validateForm();
+    }
+  }
 
   const handleDateChange = (e) => {
     setDate(e.target.value);
@@ -81,6 +87,16 @@ export default function Home() {
   const handlMyProfile = () => {
     setShowProfile(!showProfile);
   };
+
+  const validateForm = () => {
+    if (fromAirport && toAirport) {
+      setFormValid(true);
+    } else {
+      setFormValid(false);
+    }
+  }
+
+  
 
 
   return (
@@ -116,10 +132,10 @@ export default function Home() {
         </div>
         <div className="box">
           <label htmlFor="date" className="label">Date:</label>
-          <input type="date" id="date" value={date} min={today} onChange={handleDateChange} className="date-input" />
+          <input type="date" id="date" value={date}  min={today} onChange={handleDateChange} className="date-input" />
         </div>
         <div className="box">
-          <button onClick={handleSearch} className="search-button">Search</button>
+          <button onClick={handleSearch} className="search-button" disabled={!formValid}>Search</button>
           {showSchedule}
         </div>
       </div>
@@ -135,5 +151,5 @@ export default function Home() {
       </div>}
       </div>
       </div>
-  );
+  )
 }

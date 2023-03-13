@@ -56,6 +56,30 @@ export default function Booking(props){
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    if (!booking.passenger_name.trim().match(/^[a-zA-Z\s]+$/)) {
+      alert("Passenger name should have minimum 1 space and characters only");
+      return;
+    }
+  
+    
+    if (booking.passenger_age === 0) {
+      alert("Passenger age cannot be 0");
+      return;
+    }
+  
+    
+    if (booking.passenger_gender === "") {
+      alert("Please select a gender");
+      return;
+    }
+    
+    if (booking.seat === "") {
+      alert("Please select a seat");
+      return;
+    }
+  
+
     axios.post('http://localhost:8888/api/v6/newbooking', booking)
       .then(response => {
         console.log(response);
@@ -80,7 +104,7 @@ export default function Booking(props){
       </div>
       <div>
         <label>Passenger Age:</label>
-        <input type="number" name="passenger_age" value={booking.passenger_age} onChange={handleInputChange} />
+        <input type="number" name="passenger_age" value={booking.passenger_age} onChange={handleInputChange} min="1"/>
       </div>
       <div>
         <label>Passenger Gender:</label>
