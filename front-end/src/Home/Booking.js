@@ -63,8 +63,8 @@ export default function Booking(props){
     }
   
     
-    if (booking.passenger_age === 0) {
-      alert("Passenger age cannot be 0");
+    if (booking.passenger_age === "" || booking.passenger_age===0) {
+      alert("Passenger age cannot be empty and 0");
       return;
     }
   

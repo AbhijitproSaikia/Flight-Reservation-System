@@ -29,6 +29,21 @@ export default function UserProfile(props) {
   },[userId] );
 
   const handleUpdateUser = () => {
+    if (!name.trim().match(/^[a-zA-Z\s]+$/)) {
+      alert("Name should have minimum 1 space and characters only");
+      return;
+    }
+
+    if (!email.trim().match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+      alert("Enter Valid Email");
+      return;
+    }
+    
+    if (password.length<4) {
+      alert("Password should be minimum of 4 characters");
+      return;
+    }
+
     axios
       .put(`http://localhost:9991/api/v6/updateuser/${userId}`, {
         uname: name,

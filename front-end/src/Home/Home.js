@@ -29,7 +29,6 @@ export default function Home() {
   }
 
   const [airports, setAirports] = useState([])
-  const [formValid, setFormValid] = useState(false)
 
   useEffect(() => {
     axios.get('http://localhost:8889/api/v6/airports')
@@ -60,15 +59,16 @@ export default function Home() {
   
   const handleFromChange = (e) => {
     setFromAirport(e.target.value);
-    validateForm();
+    // validateForm();
   };
 
-  const handleToChange = (event) => {
-    const selectedAirport = event.target.value;
-    if (selectedAirport !== fromAirport) {
-      setToAirport(selectedAirport);
-      validateForm();
-    }
+  const handleToChange = (e) => {
+    // const selectedAirport = event.target.value;
+    // if (selectedAirport !== fromAirport) {
+    //   setToAirport(selectedAirport);
+    //   validateForm();
+    // }
+    setToAirport(e.target.value);
   }
 
   const handleDateChange = (e) => {
@@ -76,8 +76,20 @@ export default function Home() {
   };
 
   const handleSearch = () => {
+
+    if(fromAirport==="" || toAirport===""){
+      alert("Select source and destination properly")
+    }
+
+    else if(fromAirport===toAirport)
+    {
+      alert("Source and destination cannot be same")
+    }
+
+    else{
     console.log(`Search for flights from ${fromAirport} to ${toAirport} on ${date}`);
     setShowSchedule(!showSchedule);
+    }
   };
 
   const handlMyBookings = () => {
@@ -88,13 +100,6 @@ export default function Home() {
     setShowProfile(!showProfile);
   };
 
-  const validateForm = () => {
-    if (fromAirport && toAirport) {
-      setFormValid(true);
-    } else {
-      setFormValid(false);
-    }
-  }
 
   
 
@@ -107,6 +112,12 @@ export default function Home() {
        <button onClick={handlMyProfile} className="button2">My Profile</button>{showProfile}
        <button className="button3" onClick={handleLogout}>Logout</button>
      </div>
+      <div>
+      {showBookings && <div><MyBookings userId={userId}/></div>}
+      </div>
+      <div>
+      {showProfile && <div><MyProfile userId={userId}/></div>}
+      </div>
       <div className="container">
         <div className="box">
           <label htmlFor="from" className="label">From:</label>
@@ -135,21 +146,15 @@ export default function Home() {
           <input type="date" id="date" value={date}  min={today} onChange={handleDateChange} className="date-input" />
         </div>
         <div className="box">
-          <button onClick={handleSearch} className="search-button" disabled={!formValid}>Search</button>
+          <button onClick={handleSearch} className="search-button">Search</button>
           {showSchedule}
         </div>
       </div>
-      <div>{showSchedule && <div><Schedule userId={userId} fromAirport={fromAirport} toAirport={toAirport} date={date}/>
-      </div>}
-      </div>
       <div>
-      {showBookings && <div><MyBookings userId={userId}/>
+        {showSchedule && <div><Schedule userId={userId} fromAirport={fromAirport} toAirport={toAirport} date={date}/>
       </div>}
       </div>
-      <div>
-      {showProfile && <div><MyProfile userId={userId}/>
-      </div>}
-      </div>
+      
       </div>
   )
 }

@@ -25,6 +25,29 @@ export default function MyBookings(props) {
   
 
   const handleUpdateBooking = (id,usid, name, age, gender,fid,s,d,dt,at,fd,fdu,pn,pr,st) => {
+
+    if (!name.trim().match(/^[a-zA-Z\s]+$/)) {
+      alert("Passenger name should have minimum 1 space and characters only");
+      return;
+    }
+  
+    
+    if (age === "" || age===0) {
+      alert("Passenger age cannot be empty and 0");
+      return;
+    }
+  
+    
+    if (gender === "") {
+      alert("Please select a gender");
+      return;
+    }
+    
+    if (st === "") {
+      alert("Please select a seat");
+      return;
+    }
+
     axios
       .put(`http://localhost:8888/api/v6/updatebooking/${id}`, {
         uid: usid,

@@ -21,10 +21,10 @@ export default function Registration(){
           return;
         }
 
-        // if (!upassword.length<4) {
-        //   alert("Password should be minimum of 4 characters");
-        //   return;
-        // }
+        if (upassword.length<4) {
+          alert("Password should be minimum of 4 characters");
+          return;
+        }
 
         axios.post(`http://localhost:9991/api/v6/registration`, {
            uname,
