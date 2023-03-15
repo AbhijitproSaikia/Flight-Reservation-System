@@ -1,0 +1,33 @@
+nav {
+    background-color: #0f8fcf;
+  }
+  
+  .brand-logo {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+  }
+  
+  nav li {
+    margin: 0 1rem;
+  }
+  
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  nav a:hover {
+    color: #8222ff;
+  }
+  

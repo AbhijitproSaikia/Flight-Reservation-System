@@ -1,0 +1,82 @@
+.schedule {
+    text-align: center;
+  }
+  
+  .schedule li {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 2px solid #1d0303;
+    
+    border-radius: 5px;
+    list-style: none;
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+  }
+  
+  .schedule li button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .schedule li button:hover {
+    background-color: #3e8e41;
+  }
+  
+  .schedule li strong {
+    font-size: 30px;
+    margin-bottom: 10px;
+    
+  }
+  
+  .schedule li ul {
+    padding: 0;
+    margin: 0;
+     font-size: 18px;
+  }
+  
+  .schedule li li {
+    margin-bottom: 5px;
+  }
+
+  button.cancel {
+    display: inline-block;
+    margin-right: 10px;
+    background-color: #e73821;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  .schedule li strong {
+    color: rgb(250, 7, 7);
+  }
+  
+  .schedule li ul li:first-child {
+    color: rgb(0, 0, 255);
+    font-size: 22px;
+  }
+  
+  .price {
+    color: rgb(252, 4, 4);
+    font-size: 23px;
+  } 
+  
+  .fd {
+    color: rgb(10, 2, 0);
+    font-size: 22px;
+  } 
